@@ -1,0 +1,177 @@
+/* ── Dariro Mode — Global Styles ──────────────────────────────────────── */
+@import 'tailwindcss';
+
+:root {
+  --dm-bg: #0D0D0F;
+  --dm-surface: #161618;
+  --dm-surface-2: #1E1E20;
+  --dm-red: #E63329;
+  --dm-red-dark: #C42820;
+  --dm-red-glow: rgba(230, 51, 41, 0.15);
+  --dm-white: #FFFFFF;
+  --dm-grey: #9A9AA0;
+  --dm-border: rgba(255,255,255,0.08);
+  --dm-font-heading: 'Outfit', sans-serif;
+  --dm-font-body: 'Inter', sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--dm-bg);
+  color: var(--dm-white);
+  font-family: var(--dm-font-body);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 { font-family: var(--dm-font-heading); font-weight: 700; line-height: 1.1; }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--dm-bg); }
+::-webkit-scrollbar-thumb { background: var(--dm-red); border-radius: 3px; }
+
+/* Selection */
+::selection { background: var(--dm-red); color: white; }
+
+/* Animations */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-30px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+@keyframes pulse-red {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(230, 51, 41, 0.4); }
+  50% { box-shadow: 0 0 0 12px rgba(230, 51, 41, 0); }
+}
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Utility Classes */
+.dm-container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+.dm-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--dm-red);
+  color: white;
+  padding: 14px 28px;
+  border-radius: 6px;
+  font-family: var(--dm-font-heading);
+  font-weight: 600;
+  font-size: 15px;
+  letter-spacing: 0.02em;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+.dm-btn-primary:hover {
+  background: var(--dm-red-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(230, 51, 41, 0.35);
+}
+
+.dm-btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  color: white;
+  padding: 13px 27px;
+  border-radius: 6px;
+  font-family: var(--dm-font-heading);
+  font-weight: 600;
+  font-size: 15px;
+  letter-spacing: 0.02em;
+  border: 1px solid var(--dm-border);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+.dm-btn-outline:hover {
+  border-color: rgba(255,255,255,0.3);
+  background: rgba(255,255,255,0.05);
+  transform: translateY(-2px);
+}
+
+.dm-section-label {
+  font-family: var(--dm-font-heading);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--dm-red);
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.dm-section-label::before {
+  content: '';
+  width: 24px;
+  height: 2px;
+  background: var(--dm-red);
+  flex-shrink: 0;
+}
+
+/* Modal backdrop */
+.dm-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  backdrop-filter: blur(8px);
+  z-index: 9000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+.dm-modal {
+  background: var(--dm-surface);
+  border: 1px solid var(--dm-border);
+  border-radius: 16px;
+  max-width: 760px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 48px;
+  position: relative;
+  animation: fadeInUp 0.3s ease;
+}
+.dm-modal-close {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  background: var(--dm-surface-2);
+  border: 1px solid var(--dm-border);
+  color: var(--dm-grey);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 18px;
+  transition: all 0.2s;
+}
+.dm-modal-close:hover { color: white; border-color: rgba(255,255,255,0.3); }
